@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Jeu du Mot Intrus</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; }
+    button { padding: 10px 20px; margin-top: 15px; }
+    input { padding: 8px; margin: 5px; }
+  </style>
+</head>
+<body>
+
+  <!-- Étape 1 -->
+  <div id="step1">
+    <h2>Nombre de joueurs</h2>
+    <input type="number" id="playerCount" min="3">
+    <br>
+    <button onclick="createPlayers()">Continuer</button>
+  </div>
+
+  <!-- Étape 2 -->
+  <div id="step2" style="display:none;">
+    <h2>Noms des joueurs</h2>
+    <div id="playersInputs"></div>
+    <button onclick="startParticipation()">Valider</button>
+  </div>
+
+  <!-- Étape 3 -->
+  <div id="step3" style="display:none;">
+    <h2 id="participationText"></h2>
+    <button onclick="validateParticipation()">Je valide ma participation</button>
+  </div>
+
+  <!-- Étape 4 -->
+  <div id="step4" style="display:none;">
+    <h2 id="playerTurn"></h2>
+    <button onclick="showWord()">Je suis prêt</button>
+
+    <div id="wordBox" style="display:none;">
+      <h1 id="word"></h1>
+      <button onclick="nextPlayer()">J'ai vu mon mot</button>
+    </div>
+  </div>
+
+  <!-- Fin -->
+  <div id="end" style="display:none;">
+  <h2>🎉 Tous les mots ont été distribués</h2>
+
+  <button onclick="endGame()">Fin de partie</button>
+  <br><br>
+
+  <button onclick="openRecall()">Rappel du mot</button>
+
+<div id="recall" style="display:none; margin-top:20px;">
+  <h3>Rappel du mot</h3>
+
+  <input id="recallName" placeholder="Entre ton nom">
+  <br><br>
+
+  <button onclick="checkRecallPlayer()">Continuer</button>
+
+  <div id="recallConfirm" style="display:none;">
+    <h3 id="recallPlayer"></h3>
+    <button onclick="showRecallWord()">Je suis bien devant l’écran</button>
+  </div>
+
+  <div id="recallWordBox" style="display:none;">
+    <h1 id="recallWord"></h1>
+    <button onclick="closeRecall()">J’ai vu mon mot</button>
+  </div>
+
+  <p id="recallError" style="color:red;"></p>
+</div>
+
+
+  <div id="reveal" style="display:none;">
+    <h2 id="intruderReveal"></h2>
+    <p id="wordsReveal"></p>
+  </div>
+</div>
+
+
+<script src="jeu.js"></script>
+</body>
+</html>
