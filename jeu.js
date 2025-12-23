@@ -9,6 +9,8 @@ const wordPairs = [];
 
 //création des joueurs
 function createPlayers() {
+	chargerJSON();
+	
   const count = parseInt(document.getElementById("playerCount").value);
   const container = document.getElementById("playersInputs");
   container.innerHTML = "";
@@ -63,7 +65,7 @@ function validateParticipation() {
 
 // Tirage au sort
 function setupWords() {
-  chargerJSON();
+  
 	
   intruderIndex = Math.floor(Math.random() * players.length);
   selectedPair = wordPairs[Math.floor(Math.random() * wordPairs.length)];
