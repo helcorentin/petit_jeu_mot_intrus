@@ -5,12 +5,7 @@ let selectedPair = null;
 let recallIndex = null;
 
 // Liste JSON des mots
-const wordPairs = [
-  { common: "Plage", intruder: "Montagne" },
-  { common: "Chat", intruder: "Chien" },
-  { common: "Voiture", intruder: "Vélo" },
-  { common: "Pizza", intruder: "Burger" }
-];
+const wordPairs = [];
 
 //création des joueurs
 function createPlayers() {
@@ -68,7 +63,7 @@ function validateParticipation() {
 
 // Tirage au sort
 function setupWords() {
-  wordPairs = chargerJSON();
+  chargerJSON();
 	
   intruderIndex = Math.floor(Math.random() * players.length);
   selectedPair = wordPairs[Math.floor(Math.random() * wordPairs.length)];
@@ -163,15 +158,10 @@ function closeRecall() {
   document.getElementById("recallWordBox").style.display = "none";
 }
 
- function chargerJSON() {
-    fetch("data.json")
-      .then(response => response.json())
-      .then(data => {
-        document.getElementById("resultat").textContent =
-          "common : " + data.common + "\n" +
-          "intruder : " + data.intruder + "\n"
-      })
-      .catch(error => {
-        console.error("Erreur :", error);
-      });
-  }
+function chargerJSON() {
+	fetch("data.json")
+		.then(r => r.json())
+		.then(data => {
+			wordPairs.push(...data);
+		});
+}
