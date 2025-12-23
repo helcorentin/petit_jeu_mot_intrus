@@ -1,0 +1,6 @@
+[
+{ common: "Plage", intruder: "Montagne" },
+  { common: "Chat", intruder: "Chien" },
+  { common: "Voiture", intruder: "Vélo" },
+  { common: "Pizza", intruder: "Burger" }
+]

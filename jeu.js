@@ -12,7 +12,7 @@ const wordPairs = [
   { common: "Pizza", intruder: "Burger" }
 ];
 
-// Étape 1 → création des champs joueurs
+//création des joueurs
 function createPlayers() {
   const count = parseInt(document.getElementById("playerCount").value);
   const container = document.getElementById("playersInputs");
@@ -29,7 +29,7 @@ function createPlayers() {
   showStep(2);
 }
 
-// Étape 2 → sauvegarde des joueurs
+//sauvegarde des joueurs
 function startParticipation() {
   players = [];
   const inputs = document.querySelectorAll("#playersInputs input");
@@ -47,7 +47,6 @@ function startParticipation() {
   showStep(3);
 }
 
-// Étape 3 → validation participation
 function showParticipation() {
   document.getElementById("participationText").innerText =
     `Joueur ${currentIndex + 1} : ${players[currentIndex].name}`;
@@ -69,6 +68,8 @@ function validateParticipation() {
 
 // Tirage au sort
 function setupWords() {
+  wordPairs = chargerJSON();
+	
   intruderIndex = Math.floor(Math.random() * players.length);
   selectedPair = wordPairs[Math.floor(Math.random() * wordPairs.length)];
 
@@ -79,7 +80,6 @@ function setupWords() {
   });
 }
 
-// Étape 4 → distribution des mots
 function showWordTurn() {
   document.getElementById("playerTurn").innerText =
     `Joueur ${currentIndex + 1} : ${players[currentIndex].name}`;
@@ -163,3 +163,15 @@ function closeRecall() {
   document.getElementById("recallWordBox").style.display = "none";
 }
 
+ function chargerJSON() {
+    fetch("data.json")
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById("resultat").textContent =
+          "common : " + data.common + "\n" +
+          "intruder : " + data.intruder + "\n"
+      })
+      .catch(error => {
+        console.error("Erreur :", error);
+      });
+  }
